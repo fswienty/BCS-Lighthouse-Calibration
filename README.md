@@ -5,14 +5,18 @@ These scripts can be used to calibrate the lighthouse positioning system for use
 #### get_bs_position.py
 Outputs the coordinates of the lighthouse base stations. The Vive headset has to be connected and SteamVR has to be running for the script to work. It seems to work best with the headset on the floor in the middle of the room facing the windows. The coordinates will look something like this:
 
+```
 {.origin = {-1.755063, -2.378910, 2.727174, }, .mat = {{0.569296, -0.795590, 0.207216, }, {0.750985, 0.605805, 0.262721, }, {-0.334551, 0.006050, 0.942358, }, }},
 {.origin = {1.653693, 2.383405, 2.723262, }, .mat = {{-0.646577, 0.740935, -0.181529, }, {-0.676042, -0.666786, -0.313627, }, {-0.353419, -0.080062, 0.932033, }, }},
+```
 
 These coordinates have to be copy/pasted into the lighthouse.c file in the crazyflie firmware. Additionally, the lines 
 
+```
 #ifndef DISABLE_LIGHTHOUSE_DRIVER
  #define DISABLE_LIGHTHOUSE_DRIVER 1
 #endif
+```
 
 have to be commented out to compile the firmware with lighthouse positioning enabled.
 
