@@ -25,3 +25,13 @@ Connects to a drone and prints its position. Useful to check if everything is wo
 
 #### autonomousSequence.py
 Connects to a Crazyflie and makes it fly to a predefined sequence of points. If everythings works correctly, it should start, fly a square, and land. The Crazyflie should be close to (0, 0, 0) before executing this script.
+
+#### Lighthouse deck LED meanings
+The blue LED means that the FPGA has booted and the RED LED means that the FPGA is in bootloader mode, the YELLOW LED means that the bootloader is busy doing something. When in firmware mode, the blue led should be lit but none of the other leds are currently controlled.
+
+The board starts in bootloader mode, the Crazyflie checks the firmware and then boots the board in firmware mode so the sequence you are supposed to see is:
+
+- blue ON, red ON, yellow OFF # Bootloader IDLE, if stuck here the communication to the bootloader is not working well
+- blue ON, red ON, yellow ON # Checking firmware version or flashing new firmware
+- blue OFF, red OFF, yellow OFF # FPGA rebooting, if stuck there the firmware image is bad
+- blue ON, red OFF, yellow OFF # Firmware mode
